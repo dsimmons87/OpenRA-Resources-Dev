@@ -14,7 +14,7 @@ git clone https://github.com/dsimmons87/OpenRA-Resources-Dev.git openra_resource
 
 3. If you are using any engines that use "mono" (pre 2021), uncomment the relevant lines from the Dockerfile to install mono on the python docker image.
 
-4. Copy settings.py.example from the root folder into the src directory and update requirements.txt so that psycopg2 is set to version 2.8.
+4. Copy settings.py.example from the root folder into the src/openra directory and update src/requirements.txt so that psycopg2 is set to version 2.8.
 
 5. Open a terminal and run the following command from the root of the project directory to bring up the docker containers:
 
