@@ -68,7 +68,7 @@ Extract the AppImage contents, and rename the squashfs-root folder to the mod na
 
 In linux the process would look like this:
 
-    cd ~/wherever/engines
+    cd ~/wherever/engines/release-20210321
 
     mv ~/Downloads/OpenRA-Red-Alert-x86_64.AppImage ra.AppImage
 
