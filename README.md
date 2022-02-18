@@ -2,7 +2,7 @@
 
 ## Requirements:
 
-You will need both docker and docker-compose installed for this to work. It also assumes that you have added your user to the docker group so that docker commands can be run without root privilages. If no, you may need to use sudo for the docker commands.
+You will need both docker and docker-compose installed for this to work. It also assumes that you have added your user to the docker group so that docker commands can be run without root privilages. If not, you may need to use sudo for the docker commands.
 
 ## Initial Setup:
 
