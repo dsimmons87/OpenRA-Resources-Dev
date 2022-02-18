@@ -15,6 +15,7 @@ services:
     volumes:
       - ./src:/src
       - ./data/log:/log
+      - ./data/openra:/src/openra/data
       - ./engines:/engines
     command: python manage.py runserver 0.0.0.0:6000
     # Use the following command instead to use gunicorn which is closer to production, however isn't ideal for development due to caching
