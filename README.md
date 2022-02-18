@@ -14,7 +14,7 @@ You will need both docker and docker-compose installed for this to work. It also
 
 3. If you are using any engines that use "mono" (pre 2021), uncomment the relevant lines from the Dockerfile to install mono on the python docker image.
 
-4. Copy settings.py.example from the root folder into the src/openra directory and update src/requirements.txt so that psycopg2 is set to version 2.8.
+4. Copy settings.py.example from the root folder into the src/openra directory, also renaming it to settings.py and update src/requirements.txt so that psycopg2 is set to version 2.8.
 
 5. Open a terminal and run the following command from the root of the project directory to bring up the docker containers:
 
@@ -48,7 +48,7 @@ To close down all containers, just press ctrl+c on the main terminal that you ra
 
 To start the containers again, run "docker-compose up" from the root directory of the project.
 
-If you need to run any django or python commands, access the python container by following steps 4 to 6 from the initial setup.
+If you need to run any django or python commands, access the python container by following steps 6 to 8 from the initial setup.
 
 If you are working on the resource center, you will likely need to change the "remote" of src to point to your fork of the project.
 
