@@ -1,14 +1,14 @@
-## OpenRA Resource Center Development Environment
+# OpenRA Resource Center Development Environment
 
-# Requirements:
+## Requirements:
 
 You will need both docker and docker-compose installed for this to work. It also assumes that you have added your user to the docker group so that docker commands can be run without root privilages. If no, you may need to use sudo for the docker commands.
 
-# Initial Setup:
+## Initial Setup:
 
 1. Clone using the following command:
 
-git clone https://github.com/dsimmons87/OpenRA-Resources-Dev.git openra_resources --recurse-submodules
+    git clone https://github.com/dsimmons87/OpenRA-Resources-Dev.git openra_resources --recurse-submodules
 
 2. Create a folder called "engines" and put any openra versions you'll be using in there. This can be left until later, but you wont be able to upload any maps until this is done - for help with this see Engines further down.
 
@@ -18,31 +18,31 @@ git clone https://github.com/dsimmons87/OpenRA-Resources-Dev.git openra_resource
 
 5. Open a terminal and run the following command from the root of the project directory to bring up the docker containers:
 
-docker-compose up
+    docker-compose up
 
 6. In another terminal determine the container_id of the "django" docker container:
 
-docker container ls
+    docker container ls
 
 7. Load an interactive bash shell on the django container (replace <container_id> with the first few characters of the container_id from step 4):
 
-docker container exec -i -t <container_id> bash
+    docker container exec -i -t <container_id> bash
 
 8. You are now in an interactive bash shell within the docker container running django.
 
 9. Migrate the database to create any tables required:
 
-python manage.py migrate
+    python manage.py migrate
 
 10. If all has gone well, you should now be able to see a local version of the resource center on http://localhost:8000;
 
 11. Create a superuser:
 
-python manage.py createsuperuser
+    python manage.py createsuperuser
 
 12. You should now be able to log in on your local resource center using the username and password you set here.
 
-# Usage
+## Usage
 
 To close down all containers, just press ctrl+c on the main terminal that you ran docker-compose up in.
 
@@ -52,9 +52,9 @@ If you need to run any django or python commands, access the python container by
 
 If you are working on the resource center, you will likely need to change the "remote" of src to point to your fork of the project.
 
-# Engines
+## Engines
 
-## Current Versions
+### Current Versions
 
 For current versions of openra:
 
@@ -68,40 +68,48 @@ Extract the AppImage contents, and rename the squashfs-root folder to the mod na
 
 In linux the process would look like this:
 
-cd ~/wherever/engines
+    cd ~/wherever/engines
 
-mv ~/Downloads/OpenRA-Red-Alert-x86_64.AppImage ra.AppImage
+    mv ~/Downloads/OpenRA-Red-Alert-x86_64.AppImage ra.AppImage
 
-chmod +x ra.AppImage
+    chmod +x ra.AppImage
 
-./ra.AppImage --appimage-extract
+    ./ra.AppImage --appimage-extract
 
-mv squashfs-root ra
+    mv squashfs-root ra
 
-rm ra.AppImage
+    rm ra.AppImage
 
 Then repeat this process for td and d2k
 
-## Legacy Versions
+### Legacy Versions
 
 For versions listed as legacy in the settings.py:
 
 First you will need to make sure you have mono installed on the python image. To do this, make sure you uncomment the relevant lines from the Dockerfile, then rebuild the image with the following command:
 
-docker-compose build
+    docker-compose build
 
 If you get an error, you may need to give your user ownership of the data directory recursively (replace youruser with your user):
 
-chmod youruser:youruser data -R
+    chmod youruser:youruser data -R
 
 Clone a shallow copy of the version you need:
 
-git clone https://github.com/OpenRA/OpenRA.git --depth 1 -b release-20171014 release-20171014
+    git clone https://github.com/OpenRA/OpenRA.git --depth 1 -b release-20171014 release-20171014
 
-Follow the INSTALL.md file for that version of OpenRA to build it correctly. For example:
+Follow the instructions in the INSTALL.md file for that version of OpenRA to build it correctly, which can be found within the root of the git repository that you just downloaded.
 
-https://github.com/OpenRA/OpenRA/blob/release-20171014/INSTALL.md
+    cd release-20171014
+
+    less INSTALL.md
 
 Once built, you should then be able to upload maps for that version inside your local copy of the resource center.
 
-# Other Notes
+## Other Notes
+
+By default you cannot upload maps within 24 hours of creating an account, a quick "hack" to get around this while testing is to add the following line to the user_account_age function in misc.py after the authentication check:
+
+    return 99999999999
+
+Alternatively, you could alter user record to make it appear older.
