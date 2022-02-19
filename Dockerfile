@@ -1,10 +1,9 @@
-FROM python:3.5
+FROM python:3
 
 WORKDIR /src
 
 COPY ./src/requirements.txt ./
 
-RUN pip install --no-cache-dir gunicorn
 RUN pip install --no-cache-dir -r requirements.txt
 
 RUN rm requirements.txt
