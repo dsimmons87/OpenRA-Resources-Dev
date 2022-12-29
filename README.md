@@ -8,7 +8,9 @@ You will need both docker and docker-compose installed for this to work. It also
 
 1. Clone using the following command:
 
+    ```bash
     git clone https://github.com/dsimmons87/OpenRA-Resources-Dev.git openra_resources --recurse-submodules
+    ```
 
 2. Create a folder called "engines" and put any openra versions you'll be using in there. This can be left until later, but you wont be able to upload any maps until this is done - for help with this see Engines further down.
 
@@ -18,27 +20,43 @@ You will need both docker and docker-compose installed for this to work. It also
 
 5. Open a terminal and run the following command from the root of the project directory to bring up the docker containers:
 
+    ```bash
     docker-compose up
+    ```
 
 6. In another terminal determine the container_id of the "django" docker container:
 
+    ```bash
     docker container ls
+    ```
 
 7. Load an interactive bash shell on the django container (replace <container_id> with the first few characters of the container_id from step 4):
 
+    ```bash
     docker container exec -i -t <container_id> bash
+    ```
 
 8. You are now in an interactive bash shell within the docker container running django.
 
 9. Migrate the database to create any tables required:
 
+    ```bash
     python manage.py migrate
+    ```
 
 10. If all has gone well, you should now be able to see a local version of the resource center on http://localhost:8000;
 
-11. Create a superuser:
+11. Seed the database with a superuser account and a few test maps:
 
-    python manage.py createsuperuser
+    ```bash
+    python manage.py seedtestdata {email} {username} {password}
+    ```
+
+    For example
+
+    ```bash
+    python manage.py seedtestdata admin@example.com admin password
+    ```
 
 12. You should now be able to log in on your local resource center using the username and password you set here.
 
@@ -105,11 +123,3 @@ Follow the instructions in the INSTALL.md file for that version of OpenRA to bui
     less INSTALL.md
 
 Once built, you should then be able to upload maps for that version inside your local copy of the resource center.
-
-## Other Notes
-
-By default you cannot upload maps within 24 hours of creating an account, a quick "hack" to get around this while testing is to add the following line to the user_account_age function in misc.py after the authentication check:
-
-    return 99999999999
-
-Alternatively, you could alter user record to make it appear older.
