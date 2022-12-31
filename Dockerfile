@@ -9,6 +9,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 RUN rm requirements.txt
 
+RUN curl -fsSL https://get.docker.com | sh
+
 # Uncomment the following if using older openra versions that require mono
 #RUN apt update
 #RUN apt install dirmngr gnupg apt-transport-https ca-certificates software-properties-common -y

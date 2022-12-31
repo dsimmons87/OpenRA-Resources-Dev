@@ -15,9 +15,12 @@ services:
     volumes:
       - ./src:/src
       - ./data/log:/log
-      - ./data/openra:/src/openra/data
       - ./engines:/engines
-    command: python manage.py runserver 0.0.0.0:6000
+    command: >
+      bash -c "sleep 5 && service docker start &&
+               python manage.py runserver 0.0.0.0:6000"
+    # Privileged is required to run docker inside docker
+    privileged: true
     # Use the following command instead to use gunicorn which is closer to production, however isn't ideal for development due to caching
     #command: gunicorn openra.wsgi -w 10 -t 300 --log-file=/log/gunicorn.log -b 0.0.0.0:6000
     depends_on:
