@@ -49,7 +49,7 @@ requests==2.14.2
 
 10. If all has gone well, you should now be able to see a local version of the resource center on http://localhost:8000;
 
-11. Seed the database with a superuser account and a few test maps:
+11. Seed the database with a superuser account and a few test maps: **Note: this will fail if you haven't added the current release engine yet**
 
     ```bash
     python manage.py seedtestdata {email} {username} {password}

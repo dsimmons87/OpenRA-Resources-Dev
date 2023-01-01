@@ -7,7 +7,7 @@ services:
       - ./src:/src
       - ./data/log:/log
     ports:
-      - "9000:8000"
+      - "8000:8000"
     depends_on:
       - django
   django:
@@ -18,8 +18,6 @@ services:
       - ./engines:/engines
     # Privileged is required to run docker inside docker
     privileged: true
-    # Use the following command instead to use gunicorn which is closer to production, however isn't ideal for development due to caching
-    #command: gunicorn openra.wsgi -w 10 -t 300 --log-file=/log/gunicorn.log -b 0.0.0.0:6000
     depends_on:
       - db
     environment:
