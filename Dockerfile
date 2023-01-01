@@ -1,4 +1,4 @@
-FROM python:3.5
+FROM python:3.7
 
 WORKDIR /src
 
@@ -10,6 +10,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN rm requirements.txt
 
 RUN curl -fsSL https://get.docker.com | sh
+
+COPY ./docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # Uncomment the following if using older openra versions that require mono
 #RUN apt update
