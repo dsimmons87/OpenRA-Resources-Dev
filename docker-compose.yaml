@@ -7,7 +7,7 @@ services:
       - ./src:/src
       - ./data/log:/log
     ports:
-      - "8000:8000"
+      - "9000:8000"
     depends_on:
       - django
   django:
@@ -16,7 +16,7 @@ services:
       - ./src:/src
       - ./data/log:/log
       - ./engines:/engines
-    # Privileged is required to run docker inside docker
+      - ./libs:/libs
     privileged: true
     depends_on:
       - db
