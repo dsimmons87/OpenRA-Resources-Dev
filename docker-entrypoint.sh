@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sleep 2
+
 service docker start
 
 while true

@@ -12,19 +12,25 @@ You will need both docker and docker-compose installed for this to work. It also
     git clone https://github.com/dsimmons87/OpenRA-Resources-Dev.git openra_resources --recurse-submodules
     ```
 
+2. Enter the resource center src directory and update it to the version you want to use (replace the the origin url and branch as needed)
+
+    ```bash
+    cd src/openra
+    git remote set-url origin https://github.com/OpenRA/OpenRA-Resources.git
+    git checkout master
+    ```
+
+
 2. Create a folder called "engines" and put any openra versions you'll be using in there. This can be left until later, but you wont be able to upload any maps until this is done - for help with this see Engines further down.
 
 3. If you are using any engines that use "mono" (pre 2021), uncomment the relevant lines from the Dockerfile to install mono on the python docker image.
 
-4. Copy settings.py.example from the root folder into the src/openra directory, also renaming it to settings.py and update src/requirements.txt as follows:
-
-PyYAML==3.13
-requests==2.14.2
+4. Copy settings.py.example from the root folder into the src/openra directory, also renaming it to settings.py.
 
 5. Open a terminal and run the following command from the root of the project directory to bring up the docker containers:
 
     ```bash
-    docker-compose up
+    docker compose up
     ```
 
 6. In another terminal determine the container_id of the "django" docker container:
