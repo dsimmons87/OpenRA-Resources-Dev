@@ -2,7 +2,7 @@
 
 ## Requirements:
 
-You will need both docker and docker-compose installed for this to work. It also assumes that you have added your user to the docker group so that docker commands can be run without root privilages. If not, you may need to use sudo for the docker commands.
+You will need both docker and docker compose installed for this to work. It also assumes that you have added your user to the docker group so that docker commands can be run without root privilages. If not, you may need to use sudo for the docker commands.
 
 ## Initial Setup:
 
@@ -53,7 +53,7 @@ You will need both docker and docker-compose installed for this to work. It also
     python manage.py migrate
     ```
 
-10. If all has gone well, you should now be able to see a local version of the resource center on http://localhost:8000;
+10. If all has gone well, you should now be able to see a local version of the resource center on http://localhost:9000;
 
 11. Seed the database with a superuser account and a few test maps: **Note: this will fail if you haven't added the current release engine yet**
 
@@ -71,9 +71,9 @@ You will need both docker and docker-compose installed for this to work. It also
 
 ## Usage
 
-To close down all containers, just press ctrl+c on the main terminal that you ran docker-compose up in.
+To close down all containers, just press ctrl+c on the main terminal that you ran docker compose up in.
 
-To start the containers again, run "docker-compose up" from the root directory of the project.
+To start the containers again, run "docker compose up" from the root directory of the project.
 
 If you need to run any django or python commands, access the python container by following steps 6 to 8 from the initial setup.
 
@@ -115,7 +115,7 @@ For versions listed as legacy in the settings.py:
 
 First you will need to make sure you have mono installed on the python image. To do this, make sure you uncomment the relevant lines from the Dockerfile, then rebuild the image with the following command:
 
-    docker-compose build
+    docker compose build
 
 If you get an error, you may need to give your user ownership of the data directory recursively (replace youruser with your user):
 
